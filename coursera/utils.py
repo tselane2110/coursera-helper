@@ -39,6 +39,12 @@ else:
     from string import letters as string_ascii_letters
     from string import digits as string_digits
 
+if sys.version_info[:2] >= (3, 4):
+    import html
+else:
+    from six.moves import html_parser
+    html = html_parser.HTMLParser()
+
 from .define import COURSERA_URL, WINDOWS_UNC_PREFIX
 
 # Force us of bs4 with html.parser
@@ -98,8 +104,7 @@ HTML_UNESCAPE_TABLE = dict((v, k) for k, v in HTML_ESCAPE_TABLE.items())
 
 
 def unescape_html(s):
-    h = html_parser.HTMLParser()
-    s = h.unescape(s)
+    s = html.unescape(s)
     s = unquote_plus(s)
     return unescape(s, HTML_UNESCAPE_TABLE)
 
@@ -114,8 +119,7 @@ def clean_filename(s, minimal_change=False):
     """
 
     # First, deal with URL encoded strings
-    h = html_parser.HTMLParser()
-    s = h.unescape(s)
+    s = html.unescape(s)
     s = unquote_plus(s)
 
     # Strip forbidden characters

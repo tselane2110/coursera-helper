@@ -315,11 +315,11 @@ class OnDemandCourseMaterialItemsV1(object):
         @rtype: OnDemandCourseMaterialItems
         """
 
-        dom = get_page(session, OPENCOURSE_ONDEMAND_COURSE_MATERIALS,
+        dom = get_page(session, OPENCOURSE_ONDEMAND_COURSE_MATERIALS_V2,
                        json=True,
                        class_name=course_name)
         return OnDemandCourseMaterialItemsV1(
-            dom['linked']['onDemandCourseMaterialItems.v1'])
+            dom['linked']['onDemandCourseMaterialItems.v2'])
 
     def get(self, lesson_id):
         """
@@ -945,7 +945,7 @@ class CourseraOnDemand(object):
 
         def _add_asset(name, url, destination):
             filename, extension = os.path.splitext(clean_url(name))
-            if extension is '':
+            if not extension:
                 return
 
             extension = clean_filename(
@@ -1590,7 +1590,7 @@ class CourseraOnDemand(object):
             filename, extension = os.path.splitext(clean_url(link))
             # Some courses put links to sites in supplement section, e.g.:
             # http://pandas.pydata.org/
-            if extension is '':
+            if not extension:
                 continue
 
             # Make lowercase and cut the leading/trailing dot
