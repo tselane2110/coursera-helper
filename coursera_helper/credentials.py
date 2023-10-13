@@ -15,7 +15,7 @@ try:
 except ImportError:
     keyring = None
 
-KEYRING_SERVICE_NAME = 'coursera-dl'
+KEYRING_SERVICE_NAME = 'coursera-helper'
 
 
 class CredentialsError(BaseException):
@@ -117,7 +117,7 @@ def authenticate_through_netrc(path=None):
     Raises CredentialsError if no valid netrc file is found.
     """
     errors = []
-    netrc_machine = 'coursera-dl'
+    netrc_machine = 'coursera-helper'
     paths = [path] if path else get_config_paths("netrc")
     for path in paths:
         try:

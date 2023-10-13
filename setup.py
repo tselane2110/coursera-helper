@@ -15,7 +15,7 @@ from io import open
 
 from setuptools import setup
 
-from coursera import __version__
+from coursera_helper import __version__
 
 
 def generate_readme_rst():
@@ -47,14 +47,11 @@ def read_file(filename, alt=None):
     """
     Read the contents of filename or give an alternative result instead.
     """
-    lines = None
-
     try:
         with open(filename, encoding='utf-8') as f:
-            lines = f.read()
+            return f.read()
     except IOError:
-        lines = [] if alt is None else alt
-    return lines
+        return [] if alt is None else alt
 
 
 generate_readme_rst()
@@ -72,26 +69,24 @@ trove_classifiers = [
     'Intended Audience :: End Users/Desktop',
     'License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)',
     'Operating System :: OS Independent',
-    'Programming Language :: Python :: 2',
-    'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.4',
-    'Programming Language :: Python :: 3.5',
-    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
     'Programming Language :: Python :: Implementation :: CPython',
     'Programming Language :: Python :: Implementation :: PyPy',
-    'Programming Language :: Python',
     'Topic :: Education',
 ]
 
 setup(
-    name='coursera-dl',
+    name='coursera-helper',
     version=__version__,
-    maintainer='Rogério Theodoro de Brito',
-    maintainer_email='rbrito@gmail.com',
+    maintainer='Ye Zheng',
+    maintainer_email='csyezheng@gmail..com',
 
     license='LGPL',
-    url='https://github.com/coursera-dl/coursera-dl',
+    url='https://github.com/csyezheng/coursera-helper',
 
     install_requires=requirements,
     extras_require=dict(
@@ -101,14 +96,14 @@ setup(
     description='Script for downloading Coursera.org videos and naming them.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    keywords=['coursera-dl', 'coursera',
+    keywords=['coursera-helper', 'coursera',
               'download', 'education', 'MOOCs', 'video'],
     classifiers=trove_classifiers,
 
-    packages=["coursera"],
+    packages=["coursera_helper"],
     entry_points=dict(
         console_scripts=[
-            'coursera-dl=coursera.coursera_dl:main'
+            'coursera-helper=coursera_helper.coursera_dl:main'
         ]
     ),
 

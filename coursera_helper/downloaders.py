@@ -32,7 +32,7 @@ class Downloader(object):
 
     Usage::
 
-      >>> import downloaders
+      >>> from coursera_helper import downloaders
       >>> d = downloaders.SubclassFromDownloader()
       >>> d.download('http://example.com', 'save/to/this/file')
     """

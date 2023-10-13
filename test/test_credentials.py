@@ -8,7 +8,7 @@ import os.path
 
 import pytest
 
-from coursera import credentials
+from coursera_helper import credentials
 
 
 NETRC = \

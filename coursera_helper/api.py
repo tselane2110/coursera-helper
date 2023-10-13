@@ -95,7 +95,7 @@ class QuizExamToMarkupConverter(object):
                 logging.info('Unknown question type: %s', question_type)
                 logging.info('Question json: %s', question_json)
                 logging.info('Please report class name, quiz name and the data'
-                             ' above to coursera-dl authors')
+                             ' above to coursera-helper authors')
 
             prompt = question_json['variant']['definition']['prompt']
             options = question_json['variant']['definition'].get('options', [])
@@ -678,7 +678,7 @@ class CourseraOnDemand(object):
                 # native path splitting function is not the most portable
                 # way to do it."
                 # Original pull request:
-                # https://github.com/coursera-dl/coursera-dl/pull/654
+                # https://github.com/csyezheng/coursera-helper/pull/654
                 head = '/'.join([clean_filename(dir, minimal_change=True)
                                  for dir in head.split('/')])
                 tail = clean_filename(tail, minimal_change=True)
@@ -1023,7 +1023,7 @@ class CourseraOnDemand(object):
                     'Unknown asset typeName: %s\ndom: %s\n'
                     'If you think the downloader missed some '
                     'files, please report the issue here:\n'
-                    'https://github.com/coursera-dl/coursera-dl/issues/new',
+                    'https://github.com/csyezheng/coursera-helper/issues/new',
                     typeName, json.dumps(dom, indent=4))
 
         return urls

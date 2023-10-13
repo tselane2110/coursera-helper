@@ -32,7 +32,7 @@ Make sure that you have all dependencies installed, like via:
 
 Run the test suite with
 
-    py.test coursera/test -v --cov coursera --cov-report html
+    py.test -s -vvv --cov coursera_helper --cov-report html --cov-report lcov
 
 If some test fails, please don't send your changes yet. Fix what broke
 before sending your pull request.
@@ -101,7 +101,7 @@ your local machine for your personal modifications. Let's say that your
 github username is `username`:
 
 ```
-git clone https://github.com/username/coursera-dl
+git clone https://github.com/username/coursera-helper
 ```
 
 ## Making your changes
@@ -109,7 +109,7 @@ git clone https://github.com/username/coursera-dl
 Initiate a *new* branch on your local repository copy.
 
 ```
-cd coursera-dl
+cd coursera-helper
 git checkout -b my-new-branch
 ```
 
@@ -238,7 +238,7 @@ DRAFT
 4. `git tag new_version`
 5. `git push && git push --tags`
 6. `python setup.py sdist bdist_wheel --universal` to build the package
-7. `twine upload dist/coursera-dl-0.6.1.tar.gz` to deploy the package.
+7. `twine upload dist/coursera-helper-0.6.1.tar.gz` to deploy the package.
 
 ## Docker
 

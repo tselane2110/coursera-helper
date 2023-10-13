@@ -904,7 +904,10 @@ if os.name == "posix":  # pragma: no cover
     import pwd
     _USER = pwd.getpwuid(os.getuid())[0]
 else:
-    _USER = getpass.getuser()
+    try:
+        _USER = getpass.getuser()
+    except ModuleNotFoundError:
+        _USER = ''
 
 PATH_CACHE = os.path.join(tempfile.gettempdir(), _USER + "_coursera_dl_cache")
 PATH_COOKIES = os.path.join(PATH_CACHE, 'cookies')

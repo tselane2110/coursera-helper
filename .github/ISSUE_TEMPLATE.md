@@ -8,7 +8,7 @@ Describe your issue here.
 ### Your environment
 * Operating System (name/version):
 * Python version:
-* coursera-dl version:
+* coursera-helper version:
 
 ### Steps to reproduce
 Tell us how to reproduce this issue, please don't forget to include

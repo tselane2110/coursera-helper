@@ -7,8 +7,8 @@ from io import open
 
 from six import iteritems
 
-from coursera.define import IN_MEMORY_MARKER
-from coursera.utils import BeautifulSoup
+from coursera_helper.define import IN_MEMORY_MARKER
+from coursera_helper.utils import BeautifulSoup
 
 
 def slurp_fixture(path):

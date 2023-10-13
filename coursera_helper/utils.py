@@ -21,7 +21,6 @@ from xml.sax.saxutils import escape, unescape
 
 import six
 from six import iteritems
-from six.moves import html_parser
 from six.moves.urllib.parse import ParseResult
 from six.moves.urllib_parse import unquote_plus
 
@@ -307,7 +306,7 @@ def print_ssl_error_message(exception):
 # %s %s
 #
 # Please read instructions on how to fix this error here:
-# https://github.com/coursera-dl/coursera-dl#sslerror-errno-1-_sslc504-error14094410ssl-routinesssl3_read_bytessslv3-alert-handshake-failure
+# https://github.com/csyezheng/coursera-helper#sslerror-errno-1-_sslc504-error14094410ssl-routinesssl3_read_bytessslv3-alert-handshake-failure
 #####################################################################
 """ % (type(exception).__name__, str(exception))
     logging.error(message)

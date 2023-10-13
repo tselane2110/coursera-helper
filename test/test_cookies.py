@@ -9,7 +9,7 @@ import os.path
 import requests
 from six.moves import http_cookiejar as cookielib
 
-from coursera import cookies
+from coursera_helper import cookies
 
 FIREFOX_COOKIES = \
     os.path.join(os.path.dirname(__file__),

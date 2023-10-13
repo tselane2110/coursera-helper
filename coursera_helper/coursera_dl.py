@@ -34,11 +34,11 @@ page to get the section (week) and lecture names, and then downloads the
 related materials into appropriately named files and directories.
 
 Examples:
-  coursera-dl -u <user> -p <passwd> saas
-  coursera-dl -u <user> -p <passwd> -l listing.html -o saas --skip-download
+  coursera-helper -u <user> -p <passwd> saas
+  coursera-helper -u <user> -p <passwd> -l listing.html -o saas --skip-download
 
 For further documentation and examples, visit the project's home at:
-  https://github.com/coursera-dl/coursera
+  https://github.com/csyezheng/coursera
 """
 
 
@@ -75,11 +75,11 @@ from .network import get_page, get_page_and_url
 from .commandline import parse_args
 from .extractors import CourseraExtractor
 
-from coursera import __version__
+from coursera_helper import __version__
 
 
 # URL containing information about outdated modules
-_SEE_URL = " See https://github.com/coursera-dl/coursera/issues/139"
+_SEE_URL = " See https://github.com/csyezheng/coursera/issues/139"
 
 assert V(requests.__version__) >= V('2.4'), "Upgrade requests!" + _SEE_URL
 assert V(six.__version__) >= V('1.5'), "Upgrade six!" + _SEE_URL

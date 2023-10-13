@@ -3,10 +3,10 @@ import pytest
 import requests
 from requests.exceptions import RequestException
 
-from coursera.workflow import CourseraDownloader, _iter_modules, _walk_modules
-from coursera.commandline import parse_args
-from coursera.parallel import ConsecutiveDownloader, ParallelDownloader
-from coursera.downloaders import Downloader
+from coursera_helper.workflow import CourseraDownloader, _iter_modules, _walk_modules
+from coursera_helper.commandline import parse_args
+from coursera_helper.parallel import ConsecutiveDownloader, ParallelDownloader
+from coursera_helper.downloaders import Downloader
 
 
 class MockedCommandLineArgs(object):
@@ -14,6 +14,7 @@ class MockedCommandLineArgs(object):
     This mock uses default arguments from parse_args and allows to overwrite
     them in constructor.
     """
+
     def __init__(self, **kwargs):
         args = parse_args('-u username -p password test_class'.split())
         self.__dict__.update(args.__dict__)
@@ -28,6 +29,7 @@ class MockedFailingDownloader(Downloader):
     This mock will raise whatever exception you pass to it in constructor
     in _start_download method. Pass None to prevent any exception.
     """
+
     def __init__(self, exception_to_throw):
         self._exception_to_throw = exception_to_throw
 
@@ -50,14 +52,14 @@ def make_test_modules():
                    {"en.txt": [
                        [TEST_URL,
                         "title"
-                       ]
+                        ]
                    ]
                    }
-                  ]
+                   ]
               ]
-             ]
+              ]
          ]
-        ]
+         ]
     ]
     return modules
 
@@ -127,6 +129,7 @@ def test_iter_modules():
 
     assert expected_output == collected_output
 
+
 def test_walk_modules():
     """
     Test _walk_modules, a flattened version of _iter_modules.
@@ -142,9 +145,8 @@ def test_walk_modules():
     collected_output = []
 
     for module, section, lecture, resource in _walk_modules(
-            modules=modules, class_name='test_class',
-            path='', ignored_formats=None, args=args):
-
+        modules=modules, class_name='test_class',
+        path='', ignored_formats=None, args=args):
         collected_output.append(
             (module.index, module.name,
              section.index, section.dir,

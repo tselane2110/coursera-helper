@@ -14,14 +14,14 @@ import requests
 import six
 
 from mock import Mock
-from coursera import utils
-from coursera import coursera_dl
-from coursera import api
+from coursera_helper import utils
+from coursera_helper import coursera_dl
+from coursera_helper import api
 
-from coursera.test.utils import slurp_fixture
-from coursera.formatting import (format_section, format_resource,
+from test.utils import slurp_fixture
+from coursera_helper.formatting import (format_section, format_resource,
                                  format_combine_number_resource)
-from coursera.utils import total_seconds, is_course_complete
+from coursera_helper.utils import total_seconds, is_course_complete
 
 
 @pytest.mark.parametrize(

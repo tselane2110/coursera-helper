@@ -38,7 +38,7 @@ def clean():
     create_rst_doc()
     local("python setup.py clean")
     local("rm -rf .tox coursera.egg-info htmlcov build dist README.rst")
-    local("rm -rf coursera/__pycache__/ coursera/test/__pycache__/")
+    local("rm -rf coursera_helper/__pycache__/ test/__pycache__/")
     local("find . -name '*.pyc' -delete")
 
 
@@ -57,8 +57,7 @@ def rebuild():
 
 @task
 def coverage():
-    local("py.test coursera/test -v --cov coursera --cov-report html \
-          --cov-report term-missing")
+    local("py.test -s -vvv --cov coursera_helper --cov-report html --cov-report term-missing --cov-report lcov")
 
 
 @task

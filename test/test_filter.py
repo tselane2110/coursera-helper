@@ -1,4 +1,4 @@
-from coursera.filtering import skip_format_url
+from coursera_helper.filtering import skip_format_url
 
 
 def test_filter():
