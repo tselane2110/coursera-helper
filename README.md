@@ -14,6 +14,7 @@
     + [Installation (recommended)](#installation-recommended)
     + [Manual Installation](#manual-installation)
     + [Docker container](#docker-container)
+  * [Before the start](#before-the-start)
   * [Quick Start](#quick-start)
     + [Examples](#examples)
   * [Troubleshooting](#troubleshooting)
@@ -54,6 +55,32 @@ docker run --rm -it -v \
     "$(pwd):/courses" \
     coursera-helper/coursera_helper -u <USER> -p <PASSWORD>
 ```
+
+## Before the start
+
+`coursera-helper` supports four authentication methods:
+
+1. **CAUTH (recommended)**
+
+   Just use the `--cauth 'CAUTH-value-from-browser'` option when running the program.
+
+   [How to get the cauth value?](#CAUTH)
+
+2. Browser cookies
+
+   Just use the `--browser-cookie` option when running the program.
+
+   Automatically extract CAUTH value from the browser cookie. If this method fails, please use other authentication methods.
+
+3. Username and Password
+
+   Just use the `-u <user> -p <pass>` options when running the program.
+
+   Please note that this method will open the browser, you may have to click on the reCAPTCHA.
+
+4. netrc File
+
+   Just use the `--netrc` options when running the program.
 
 ## Quick Start
 
@@ -132,6 +159,42 @@ coursera-helper data-analysis-with-python
 ```
 
 ## Troubleshooting
+
+### CAUTH
+
+Find your coursera CAUTH:
+
+* Open and login to https://www.coursera.org/
+* Right-click on the touchpad or mouse until you find *inspect*.
+* Go to Applications > Cookies (and click dropdown) > click https://www.coursera.org/ > find and click CAUTH > Copy value CAUTH.
+
+**Chrome**:
+
+1. Open the browser and login to https://www.coursera.org/
+
+2. Open the last DevTools panel
+
+   Windows or Linux: Press **F12** on the keyboard. Or press the **Ctrl** + **Shift** + **I** keys.
+
+   Mac: Press **Fn** + **F12** on the keyboard. Or press the **Cmd** + **Option** + **I** keys.
+
+3. Open **Application** > **Storage** > **Cookies** and select https://www.coursera.org/.
+
+4. find and click CAUTH > Copy value CAUTH
+
+**Firefox **:
+
+1. Open the browser and login to https://www.coursera.org/
+
+2. Open the last DevTools panel
+
+   Windows or Linux: Press **F12** on the keyboard. Or press the **Ctrl** + **Shift** + **I** keys.
+
+   Mac: Press **Fn** + **F12** on the keyboard. Or press the **Cmd** + **Option** + **I** keys.
+
+3. Open **Storage** > **Cookies** and select https://www.coursera.org/.
+
+4. find and click CAUTH > Copy value CAUTH
 
 ### china-issues
 

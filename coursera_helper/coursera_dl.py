@@ -74,6 +74,7 @@ from .api import expand_specializations
 from .network import get_page, get_page_and_url
 from .commandline import parse_args
 from .extractors import CourseraExtractor
+from coursera_helper.cauth import cauth_by_login, cauth_by_cookie
 
 from coursera_helper import __version__
 
@@ -97,15 +98,16 @@ def get_session():
     return session
 
 
-def list_courses(args):
+def list_courses(session, args):
     """
     List enrolled courses.
+
+    @param session: session.
+    @type session: session
 
     @param args: Command-line arguments.
     @type args: namedtuple
     """
-    session = get_session()
-    login(session, args.username, args.password)
     extractor = CourseraExtractor(session)
     courses = extractor.list_courses()
     logging.info('Found %d courses', len(courses))
@@ -227,16 +229,23 @@ def main():
     mkdir_p(PATH_CACHE, 0o700)
     if args.clear_cache:
         shutil.rmtree(PATH_CACHE)
-    if args.list_courses:
-        logging.info('Listing enrolled courses')
-        list_courses(args)
-        return
 
     session = get_session()
     if args.cookies_cauth:
         session.cookies.set('CAUTH', args.cookies_cauth)
+    elif args.browser_cookie:
+        cauth = cauth_by_cookie()
+        session.cookies.set('CAUTH', cauth)
     else:
-        login(session, args.username, args.password)
+        cauth = cauth_by_login(args.username, args.password, headless=args.headless)
+        session.cookies.set('CAUTH', cauth)
+        # login(session, args.username, args.password)
+
+    if args.list_courses:
+        logging.info('Listing enrolled courses')
+        list_courses(session, args)
+        return
+
     if args.specialization:
         args.class_names = expand_specializations(session, args.class_names)
 

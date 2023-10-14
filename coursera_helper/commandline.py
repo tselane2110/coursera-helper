@@ -448,6 +448,22 @@ def parse_args(args=None):
         help='uses or creates local cached version of syllabus'
         ' page')
 
+    parser.add_argument(
+        '--browser-cookie',
+        dest='browser_cookie',
+        action='store_true',
+        default=False,
+        help='Extract CAUTH value from cookies of browser'
+        ' (default: False)')
+
+    parser.add_argument(
+        '--headless',
+        dest='headless',
+        action='store_true',
+        default=False,
+        help='Whether to run browser in headless mode'
+        ' (default: False)')
+
     # Final parsing of the options
     args = parser.parse_args(args)
 
@@ -500,7 +516,7 @@ def parse_args(args=None):
         logging.error('Cookies file not found: %s', args.cookies_file)
         sys.exit(1)
 
-    if not args.cookies_file and not args.cookies_cauth:
+    if not args.cookies_file and not args.cookies_cauth and not args.browser_cookie:
         try:
             args.username, args.password = get_credentials(
                 username=args.username, password=args.password,
