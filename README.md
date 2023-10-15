@@ -16,7 +16,10 @@
     + [Docker container](#docker-container)
   * [Before the start](#before-the-start)
   * [Quick Start](#quick-start)
-    + [Examples](#examples)
+    + [List courses](#list-courses)
+    + [Download course](#download-course)
+    + [More download options](#more-download-options)
+    + [Use configuration file](#use-configuration-file)
   * [Troubleshooting](#troubleshooting)
     + [china-issues](#china-issues)
   * [Reporting issues](#reporting-issues)
@@ -38,13 +41,11 @@ It is platform independent, and should work fine under Unix (Linux, BSDs etc.), 
 
 Opening a terminal and typing the command If you have installed Python:
 
-    python -m pip install coursera-helper
+    pip install coursera-helper
 
 ### Manual Installation
 
-To install all the dependencies please do:
-
-    pip install -r requirements.txt
+    pip install git+https://github.com/csyezheng/coursera-helper.git
 
 ### Docker container
 
@@ -53,8 +54,13 @@ You can run this application via [Docker](https://docker.com) if you want. Just 
 ```
 docker run --rm -it -v \
     "$(pwd):/courses" \
-    coursera-helper/coursera_helper -u <USER> -p <PASSWORD>
+     csyezheng/coursera-helper --cauth <CAUTH-value> <course name>
 ```
+
+* Please note that it will prompt that unable to find the image locally, please wait patiently for downloading.
+* **Please note that** when running in docker mode, only the `--cauth` parameter can be passed for authentication, and username, password, and `--browser-cookie` parameters are not accepted.
+
+* The course files will be downloaded to your current directory.
 
 ## Before the start
 
@@ -62,7 +68,7 @@ docker run --rm -it -v \
 
 1. **CAUTH (recommended)**
 
-   Just use the `--cauth 'CAUTH-value-from-browser'` option when running the program.
+   Just use the `--cauth CAUTH-value-from-browser` option when running the program.
 
    [How to get the cauth value?](#CAUTH)
 
@@ -90,9 +96,25 @@ Run the following command to query the usage and options:
 coursera-helper --help
 ```
 
+### List courses
+
 Run the following command to query the courses in which you are enrolled:
 
+```
+coursera-helper --cauth <CAUTH> --list-courses
+```
+
+or
+
+```
+coursera-helper --browser-cookie --list-courses
+```
+
+or
+
     coursera-helper -u <email or username> --list-courses
+
+### Download course
 
 From there, choose the course you are interested in, copy its course name and use it
 in the following command:
@@ -101,43 +123,46 @@ in the following command:
 
 Your downloaded videos will be placed in current directory, but you can also choose another destination with the `--path` argument.
 
-To see all available options and a brief description of what they do, simply
-execute:
 
-    coursera-helper --help
-
-
-### Examples
+### More download options
 
 General download:
 
 ```
-coursera-helper -u <user> data-analysis-with-python
+coursera-helper --cauth <CAUTH> <COURSE NAME>
+```
+
+Specify download location:
+
+```
+coursera-helper --cauth <CAUTH> --path <PATH> <COURSE NAME>
 ```
 
 Download with subtitles:
 
 ```
-coursera-helper -u <user> --subtitle-language en,zh-CN|zh-TW data-analysis-with-python
+coursera-helper --cauth <CAUTH> --subtitle-language en,zh-CN|zh-TW <COURSE NAME>
 ```
 
 Specify video resolution：
 
 ```
-coursera-helper -u <user> --video-resolution 720p data-analysis-with-python
+coursera-helper --cauth <CAUTH> --video-resolution 720p <COURSE NAME>
 ```
 
 Download with quizzes:
 
 ```
-coursera-helper -u <user> --download-quizzes data-analysis-with-python
+coursera-helper --cauth <CAUTH> --download-quizzes <COURSE NAME>
 ```
 
 Download with notebooks:
 
 ```
-coursera-helper -u <user> --download-notebooks data-analysis-with-python
+coursera-helper --cauth <CAUTH> --download-notebooks <COURSE NAME>
 ```
+
+### Use configuration file
 
 Alternatively, if you want to store your preferred parameters (which might also include your username and password), create a file named `coursera-dl.conf` where the script is supposed to be executed, with the following format:
 
@@ -149,13 +174,13 @@ Alternatively, if you want to store your preferred parameters (which might also 
 --download-notebooks
 --video-resolution 720p
 --download-delay 10
--cauth <cauth value>
+--cauth <cauth value>
 ```
 
 If you have created a file named `coursera-dl.conf`, you just download course with command:
 
 ```
-coursera-helper data-analysis-with-python
+coursera-helper <COURSE NAME>
 ```
 
 ## Troubleshooting
