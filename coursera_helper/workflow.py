@@ -220,6 +220,10 @@ class CourseraDownloader(CourseDownloader):
         resume = self._args.resume
         skip_download = self._args.skip_download
 
+        if not url:
+            logging.info('Downloading: %s failed, url does not exists', lecture_filename)
+            return last_update
+
         # Decide whether we need to download it
         if overwrite or not os.path.exists(lecture_filename) or resume:
             if not skip_download:

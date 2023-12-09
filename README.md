@@ -207,7 +207,7 @@ Find your coursera CAUTH:
 
 4. find and click CAUTH > Copy value CAUTH
 
-**Firefox **:
+**Firefox**:
 
 1. Open the browser and login to https://www.coursera.org/
 
@@ -231,7 +231,7 @@ If you are from China and you're having problems downloading videos, adding
 
 in the hosts file (`/etc/hosts` or `C:\Windows\System32\drivers\etc`) 
 
-Refresh DNS with this command in the terminal.
+Flush DNS with this command in the terminal.
 
 ```
 ipconfig /flushdns
