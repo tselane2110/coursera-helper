@@ -162,6 +162,12 @@ Download with notebooks:
 coursera-helper --cauth <CAUTH> --download-notebooks <COURSE NAME>
 ```
 
+Download without skipping any urls:
+
+```
+coursera-helper --cauth <CAUTH> --disable-url-skipping <COURSE NAME>
+```
+
 ### Use configuration file
 
 Alternatively, if you want to store your preferred parameters (which might also include your username and password), create a file named `coursera-dl.conf` where the script is supposed to be executed, with the following format:
